@@ -9,9 +9,13 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'ExifTool GUI version to build'
+        description: 'Version number (e.g., 1.0.1)'
         required: true
         default: '1.0.0'
+
+permissions:
+  contents: write
+  actions: read
 
 jobs:
   build:
@@ -169,5 +173,6 @@ jobs:
           
         draft: false
         prerelease: false
+        token: ${{ secrets.GITHUB_TOKEN }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
