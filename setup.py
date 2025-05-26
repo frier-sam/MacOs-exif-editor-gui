@@ -26,6 +26,7 @@ OPTIONS = {
         'NSHighResolutionCapable': True,
         'LSMinimumSystemVersion': '10.15.0',
         'NSRequiresAquaSystemAppearance': False,
+        'LSArchitecturePriority': ['arm64', 'x86_64'],  # Support Apple Silicon
         'CFBundleDocumentTypes': [
             {
                 'CFBundleTypeName': 'Image Files',
@@ -57,7 +58,8 @@ OPTIONS = {
     'includes': ['json', 'subprocess', 'threading', 'pathlib', 'mimetypes', 'collections'],
     'excludes': ['matplotlib', 'numpy', 'scipy'],
     'resources': [],
-    'optimize': 2
+    'optimize': 2,
+    'arch': 'universal2'  # Build for both Intel and Apple Silicon
 }
 
 setup(

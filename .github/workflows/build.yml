@@ -19,7 +19,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-12  # Use macOS 12 for better universal binary support
     
     steps:
     - name: Checkout code
@@ -30,12 +30,16 @@ jobs:
       with:
         python-version: '3.10'
     
-    - name: Install dependencies
+    - name: Install universal Python and dependencies
       run: |
+        # Ensure we have universal Python
         python -m pip install --upgrade pip
+        
+        # Install universal2 wheels where available
+        pip install --upgrade --force-reinstall --no-binary :all: wheel setuptools
+        pip install --upgrade --force-reinstall Pillow
         pip install -r requirements.txt
-        # Ensure Pillow is installed for icon generation
-        pip install --upgrade Pillow
+        pip install py2app
         
     - name: Install build tools
       run: |
