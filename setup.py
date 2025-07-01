@@ -7,6 +7,7 @@ from setuptools import setup
 import sys
 import os
 
+
 # Application metadata
 APP = ['exiftool_gui.py']
 APP_NAME = 'ExifTool GUI'
